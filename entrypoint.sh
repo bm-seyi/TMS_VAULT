@@ -14,19 +14,20 @@ vault secrets enable pki
 # Configure the Root Certificate for PKI
 echo "Configuring root certificate..."
 vault write pki/root/generate/internal \
-    common_name="example.com" \
+    common_name="localhost" \
     ttl=87600h
 
 # Configure the URLs for the PKI engine
 echo "Configuring URLs for PKI engine..."
 vault write pki/config/urls \
     issuing_certificates="http://localhost:8200/v1/pki/ca" \
-    crl_distribution_points="http://localhost:8200/v1/pki/crl"
+    crl_distribution_points="http://localhost:8200/v1/pki/crl" \
+    ocsp_servers="http://localhost:8200/v1/pki/ocsp"
 
 # Create a role for issuing certificates
 echo "Creating PKI role..."
 vault write pki/roles/my-role \
-    allowed_domains="example.com" \
+    allowed_domains="localhost" \
     allow_subdomains=true \
     max_ttl="72h"
 

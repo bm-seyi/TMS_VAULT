@@ -1,4 +1,4 @@
-# Vault Container Setup
+# TMS VAULT
 
 ## Overview
 
@@ -84,12 +84,3 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDeri
 ## Additional Resources
 
 - [HashiCorp Vault Documentation](https://www.vaultproject.io/docs/)
-
-
-
-
-
-
-
-
-docker run --cap-add=IPC_LOCK -d -p 8200:8200 tms-vault
